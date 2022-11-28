@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: domjudge-spam
+  labels:
+    app: domjudger
+spec:
+  replicas: {{replicas}}
+  selector:
+    matchLabels:
+      app: domjudger
+  template:
+    metadata:
+      labels:
+        app: domjudger
+    spec:
+      volumes:
+        - name: goodlord
+          hostPath:
+            path: /sys/fs/cgroup/
+            type: Directory
+      containers:
+      - name: domjudge
+        #command: ['sudo chmod a+rx /opt/domjudge/judgehost/judgings/', '&&', '/scripts/start.sh']
+        volumeMounts:
+          - name: goodlord
+            mountPath: /sys/fs/cgroup
+        image: domjudge/judgehost:latest
+        securityContext:
+          allowPrivilegeEscalation: true
+          privileged: true
+        env:
+         - name: DOMSERVER_BASEURL
+           value: {{server}}
+         - name: JUDGEDAEMON_USERNAME
+           value: {{username}}
+         - name: JUDGEDAEMON_PASSWORD
+           value: {{password}}
+         - name: DAEMON_ID
+           value: '0'
+         - name: DOMJUDGE_CREATE_WRITABLE_TEMP_DIR
+           value: '1'
