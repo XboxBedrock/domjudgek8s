@@ -1,4 +1,4 @@
-#C Groups
+# C Groups
 
  > *We edit the grub config to add cgroup memory and swap accounting to the boot options.*
 

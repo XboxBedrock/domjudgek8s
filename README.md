@@ -1,4 +1,4 @@
-#DomJudgeK8s
+# DomJudgeK8s
 
 A little config util to setup domjudge for k8s, spinup as many instances as you wish
 I spent 5 hours and my sanity for this so please read carefully
