@@ -16,6 +16,7 @@ The Process
 > Time to lose sanity
 
 The first step to this process is to create a kubernetes deployment
+
 We have a lucky script to do this, clone this git repository and run `substitute.py`
 ```sh
 python3 substitute.py
@@ -23,7 +24,9 @@ python3 substitute.py
 Fill in the fields as prompted, once done a `domjudge.yml` file will be created, this is important.
 
 To start the deployment run `kubectl apply -f ./domjudge.yml`
+
 To view pod status run `kubectl get pods`
+
 If theres anything fatally wrong and you need to check logs run `kubectl logs <podid>`
 
 This is basically the end of the setup, however you must make sure the prequsites are perfectly executed, as they are the hardest bit of the setup.
